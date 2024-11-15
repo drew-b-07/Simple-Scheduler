@@ -1,0 +1,8 @@
+{
+    "name": "kobe/simple-scheduling-system",
+    "description": "Simple Scheduling System Sample",
+    "type": "project",
+    "version": "1.0.0",
+    "minimum-stability": "stable",
+    "require": {}
+}
