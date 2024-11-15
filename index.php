@@ -32,7 +32,7 @@
                 <input type="password" name="Sign In Password" placeholder="Enter Your Password"><br>
                 <label for="email">Email</label>
                 <input type="email" name="Sign In Email" placeholder="Enter Your Email"><br>
-                <input type="Submit" value="SIGN IN" name="sign in">
+                <input type="Submit" value="SIGN IN" name="signin">
             </form>
         </div>
     </div>
