@@ -8,7 +8,7 @@
 <body>
     <div id="wrapper">
         <div class="signup container">
-            <form action="" method="post">
+            <form action="/dashboard/Authentication.php" method="post">
                 <label for="name">Name</label>
                 <input type="text" name="name" placeholder="Enter Your Name"><br>
                 <label for="password">Password</label>
@@ -27,7 +27,7 @@
         </div>
         <hr>
         <div class="signin container">
-            <form action="" method="post">
+            <form action="/dashboard/Authentication.php" method="post">
             <label for="password">Password</label>
                 <input type="password" name="Sign In Password" placeholder="Enter Your Password"><br>
                 <label for="email">Email</label>
