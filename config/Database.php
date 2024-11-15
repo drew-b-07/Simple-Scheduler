@@ -19,4 +19,22 @@ class Database {
             $this->password = "root";
         }
     }
+
+    public function connect() {
+        $pdo = null;
+
+        try {
+            $pdo = new PDO("mysql:host={$this->hostname};dbname={$this->dbname}", $this->username, $this->password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (Exception $pdo_err) {
+            echo 
+            "<script>
+                alert(\"{$pdo_err->getMessage()}\");
+                window.location.href = \"../index.php\";
+            </script>";
+            exit();
+        }
+
+        return $pdo;
+    }
 }
