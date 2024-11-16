@@ -49,7 +49,7 @@ class Authentication {
         }
 
         $account = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($password === $account["password"]) {
+        if($password !== $account["password"]) {
             echo 
             "<script>
                 alert(\"Password Did Not Match!\");
@@ -58,29 +58,60 @@ class Authentication {
             exit();
         }
 
+        $_SESSION["login_acc"] = $account;
+
         switch($account["type"]) {
             case "patient":
-                echo "Hi, Patient " . $account["name"] . "!";
+                header("Location: ./patient/dashboard.php");
                 break;
             case "secretary":
-                echo "Hi, Secretary " . $account["name"] . "!";
+                header("Location: ./secretary/dashboard.php");
                 break;
         }
     }
+
+    public function signout() {
+        session_unset();
+        session_destroy();
+
+        echo
+        "<script>
+            alert(\"Sign Out Successfully!\");
+            window.location.href = \"../index.php\";
+        </script>";
+    }
 }
 
-if(isset($_POST["signup"])) {
-    (new Authentication())->signup(
-        $_POST["name"],
-        $_POST["email"],
-        $_POST["password"],
-        $_POST["acc_type"]
-    );
+include_once __DIR__ . "/../config/settings.php";
+
+if (isset($_POST['signup'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Encrypt password
+    $role = $_POST['acc_type']; // 'patient' or 'secretary'
+
+    // Database connection (Assume $conn is the database connection)
+    $sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssss", $name, $email, $password, $role);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Sign-Up Successful!'); window.location.href = '../index.php';</script>";
+    } else {
+        echo "<script>alert('Error: Could not complete sign-up.'); history.back();</script>";
+    }
+    $stmt->close();
+    $conn->close();
 }
+
 
 if(isset($_POST["signin"])) {
     (new Authentication())->signin(
         $_POST["email"],
         $_POST["password"]
     );
+}
+
+if(isset($_GET["logout"])) {
+    (new Authentication())->signout();
 }

@@ -1,0 +1,58 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff; /* Light blue background */
+}
+
+/* Header Styles */
+header {
+    background: #87cefa; /* Light blue color */
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 15px;
+}
+
+/* Wrapper Styles */
+#wrapper {
+    margin: 20px;
+}
+
+/* Container Styles */
+.container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #ffffff; /* White background for forms */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styles */
+form input, form select {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input[type="submit"] {
+    background: #87cefa; /* Light blue */
+    color: #fff;
+    cursor: pointer;
+    border: none;
+}
+
+form input[type="submit"]:hover {
+    background: #4682b4; /* Darker blue */
+}
